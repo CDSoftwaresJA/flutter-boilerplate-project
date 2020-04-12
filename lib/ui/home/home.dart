@@ -54,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
   // app bar methods:-----------------------------------------------------------
   Widget _buildAppBar() {
     return AppBar(
-      title: Text(AppLocalizations.of(context).translate('home_tv_posts')),
+      elevation: 0,
+      title: Text("Halls Music"),
+      backgroundColor: Colors.white,
       actions: _buildActions(context),
     );
   }
@@ -129,11 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildListView() {
     return _postStore.postList != null
-        ? ListView.separated(
+        ? ListView.builder(
             itemCount: _postStore.postList.posts.length,
-            separatorBuilder: (context, position) {
-              return Divider();
-            },
             itemBuilder: (context, position) {
               return _buildListItem(position);
             },
@@ -148,13 +147,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildListItem(int position) {
     return ListTile(
       dense: true,
-      leading: Icon(Icons.cloud_circle),
+      leading: Icon(Icons.music_note),
       title: Text(
         '${_postStore.postList.posts[position].title}',
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         softWrap: false,
-        style: Theme.of(context).textTheme.title,
+        style: Theme.of(context).textTheme.headline6,
       ),
       subtitle: Text(
         '${_postStore.postList.posts[position].body}',
@@ -162,6 +161,9 @@ class _HomeScreenState extends State<HomeScreen> {
         overflow: TextOverflow.ellipsis,
         softWrap: false,
       ),
+      onTap: (){
+        print('${_postStore.postList.posts[position].title}');
+      },
     );
   }
 

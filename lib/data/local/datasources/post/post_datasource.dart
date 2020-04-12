@@ -50,10 +50,8 @@ class PostDataSource {
   Future<PostList> getPostsFromDb() async {
 
     print('Loading from database');
-
     // post list
     var postsList;
-
     // fetching data
     final recordSnapshots = await _postsStore.find(
       await _db,
@@ -66,6 +64,8 @@ class PostDataSource {
             final post = Post.fromMap(snapshot.value);
             // An ID is a key of a record from the database.
             post.id = snapshot.key;
+            post.title= "Record";
+            post.body = "This is a record";
             return post;
           }).toList());
     }

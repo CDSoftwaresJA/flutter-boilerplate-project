@@ -35,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-
     _passwordFocusNode = FocusNode();
   }
 
@@ -63,10 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
               orientation == Orientation.landscape
                   ? child = Row(
                       children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: _buildLeftSide(),
-                        ),
                         Expanded(
                           flex: 1,
                           child: _buildRightSide(),
@@ -98,14 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildLeftSide() {
-    return SizedBox.expand(
-      child: Image.asset(
-        'assets/images/img_login.jpg',
-        fit: BoxFit.cover,
-      ),
-    );
-  }
 
   Widget _buildRightSide() {
     return Form(
@@ -226,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
         FlushbarHelper.createError(
           message: message,
           title: AppLocalizations.of(context).translate('home_tv_error'),
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
         )..show(context);
       }
     });

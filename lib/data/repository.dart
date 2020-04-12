@@ -4,6 +4,7 @@ import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
+import 'package:http/http.dart';
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
@@ -33,6 +34,7 @@ class Repository {
             .then((postsList) => postsList)
             .catchError((error) => throw error)
         : _postApi.getPosts().then((postsList) {
+          
             postsList.posts.forEach((post) {
               _postDataSource.insert(post);
             });
@@ -47,7 +49,7 @@ class Repository {
 
     //check to see if dataLogsType is not null
     if (id != null) {
-      Filter dataLogTypeFilter = Filter.equal(DBConstants.FIELD_ID, id);
+      Filter dataLogTypeFilter = Filter.equals(DBConstants.FIELD_ID, id);
       filters.add(dataLogTypeFilter);
     }
 
